@@ -19,11 +19,11 @@ void insert(vector<T>& arr, T ele) {
 	int total = arr.size();
 	int left = 0;
 	int right = total - 1;
-	if (ele < arr[0]) {
+	if (ele <= arr[0]) {
 		idx = 0;
 		
 	}
-	else if (ele > arr[total - 1]) idx = total - 1;
+	else if (ele >= arr[total - 1]) idx = total;
 	else {
 		while ((right - left) > 1) {
 
@@ -35,11 +35,11 @@ void insert(vector<T>& arr, T ele) {
 
 		}
 
-		idx = left;
+		idx = right;
 	}
 
 	arr.resize(total + 1);
-	for (int i = total-1; i >= idx+1; i--) {
+	for (int i = total-1; i >= idx; i--) {
 		arr[i + 1] = arr[i];
 	}
 	arr[idx] = ele;
@@ -48,7 +48,7 @@ int main() {
 
 	vector<double> arr = { 12,13,16,29,30,39,45 };
 	double searchele = 29;
-	double ele = 46;
+	double ele = 45;
 
 	cout <<"Search element: "<< search(arr, searchele, 0, arr.size() - 1) << endl;
 	insert(arr, ele);
