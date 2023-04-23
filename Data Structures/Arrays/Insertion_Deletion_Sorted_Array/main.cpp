@@ -44,11 +44,29 @@ void insert(vector<T>& arr, T ele) {
 	}
 	arr[idx] = ele;
 }
+template <typename T>
+void deleteelement(vector<T>& arr, T ele) {
+	
+	int total = arr.size();
+	int idx = search(arr, ele, 0, total - 1);
+	if (idx == -1) {
+	
+		cout << "Element doesnt exist!!";
+		return;
+	}
+	
+	for (int i = idx; i < total-1; i++) {
+		arr[i] = arr[i + 1];
+	
+	}
+
+	arr.resize(total - 1);
+}
 int main() {
 
 	vector<double> arr = { 12,13,16,29,30,39,45 };
 	double searchele = 29;
-	double ele = 45;
+	double ele = 10;
 
 	cout <<"Search element: "<< search(arr, searchele, 0, arr.size() - 1) << endl;
 	insert(arr, ele);
@@ -57,4 +75,12 @@ int main() {
 	
 		cout << arr[i] << "\t";
 	}
+	deleteelement(arr, 10.0);
+	cout << endl;
+	for (int i = 0; i < arr.size(); i++) {
+
+		cout << arr[i] << "\t";
+	}
+
+
 }
