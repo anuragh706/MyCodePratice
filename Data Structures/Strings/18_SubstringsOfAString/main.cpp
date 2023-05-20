@@ -14,7 +14,6 @@ void PrintSubstring(string s) {
 			cout << temp << endl;
 		}
 		//cout << temp << endl;
-
 	}
 
 }
@@ -22,4 +21,5 @@ int main() {
 
 	string str = "abcd";
 	PrintSubstring(str);
+	cout<<str.substr(0);
 }
