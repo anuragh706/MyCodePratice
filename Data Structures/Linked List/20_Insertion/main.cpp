@@ -6,14 +6,17 @@ class Node {
 public:
 	int data;
 	Node* next;
-	Node() :next(NULL), data(0) {};
+	//Node() :next(NULL), data(0) {};
 	void InsertInFront(Node** head, int data);
 	void Append(Node** head, int data);
-	void InsertAfterANode(Node** head, int data1, int data2);
+	void InsertAfterANode(Node** head, int data);
 
 };
 
 void Node::InsertInFront(Node** head,int data) {
+	
+	
+
 	Node* new_node = new Node();
 	new_node->data = data;
 	new_node->next = *head;
@@ -26,33 +29,44 @@ void Node::Append(Node** head, int data) {
 	new_node->data = data;
 
 	Node* ptr = *head;
-	
-	if (*head == NULL) {
-		Node* new_node1 = new Node();
-		new_node1=
+	if (ptr == NULL) {
+		*head = new_node;
+		return;
 	}
-	
 	while ((ptr->next) != NULL) {
 		ptr = ptr->next;
 	}
-
 	ptr->next = new_node;
 }
 
-void Node::InsertAfterANode(Node** head, int data1, int data2) {
+void Node::InsertAfterANode(Node** prev_node, int data) {
 	
-	Node* ptr = *head;
-	while ((ptr->data !=data1) && (ptr->next!=NULL)){
-		ptr = ptr->next;
+	if (*prev_node == NULL) {
+		cout << "Previous node cant be empty." << endl;
+		return;
 	}
-
 	Node* new_node = new Node();
-	new_node->data = data2;
-	new_node->next = ptr->next;
-	ptr->next = new_node;
+	new_node->data = data;
+	new_node->next = (*prev_node)->next;
+	(*prev_node)->next = new_node;
+	
 }
 int main() {
 
-	Node n1();
+	Node* node = NULL;
+	
+	node->Append(&node, 6);
+	node->InsertInFront(&node, 7);
+	node->InsertInFront(&node, 1);
+	node->Append(&node, 4);
+	node->InsertAfterANode(&(node->next), 8);
+	
 
+	while (node != NULL) {
+	
+		cout << node->data << endl;
+		node = node->next;
+	}
+
+	return 0;
 }
