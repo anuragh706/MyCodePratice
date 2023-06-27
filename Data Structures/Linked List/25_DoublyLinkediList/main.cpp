@@ -32,6 +32,7 @@ public:
 	void insertatend(double data);
 	void insertinfront(double data);
 	void delete_node(double data);
+	void reverse();
 	void display();
 };
 
@@ -113,6 +114,22 @@ void DoublyLinkedList::display() {
 		temp = temp->next;
 	}
 }
+
+void DoublyLinkedList::reverse() {
+
+	Node* current = head;
+	Node* temp = NULL;
+	while (current != NULL) {
+		
+		current->prev = current->next;
+		current->next = temp;
+		temp = current;
+		current = current->prev;
+		
+	}
+
+	head = temp;
+}
 int main() {
 	DoublyLinkedList l1;
 	l1.insertinfront(5);
@@ -121,6 +138,9 @@ int main() {
 	l1.insertinfront(31);
 	l1.insertatend(36);
 	l1.delete_node(15);
+	l1.display();
+	l1.reverse();
+	cout << endl;
 	l1.display();
 
 }
