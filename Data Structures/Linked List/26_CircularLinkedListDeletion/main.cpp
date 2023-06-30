@@ -74,6 +74,7 @@ void CircularLinkedList::display() {
 	}
 
 	cout << temp->data << "->"<<temp->next->data;
+	cout << endl;
 
 }
 
@@ -106,6 +107,35 @@ void CircularLinkedList::InsertInTheFront(double data1) {
 	head = new_node;
 
 }
+
+void CircularLinkedList::DeleteNode(double data1) {
+
+	if (head == NULL) {
+	
+		cout << "List Empty!!";
+		return;
+	}
+
+	Node* temp1 = head;
+
+
+	while (temp1 != NULL && temp1->next != head && temp1->next->data!=data1) {
+		temp1 = temp1->next;
+	}
+	if (temp1->next->data == data1) {
+		Node* temp2 = temp1->next;
+		if (temp2 == head) {
+			head = temp2->next;
+		}
+		temp1->next = temp2->next;
+		delete temp2;
+	}
+
+	
+
+
+
+}
 int main() {
 	
 	CircularLinkedList l1;
@@ -116,8 +146,17 @@ int main() {
 	l1.InsertInTheEnd(69);
 	l1.InsertInTheEnd(74);
 	l1.InsertInTheFront(75);
+	l1.InsertInTheFront(89);
+	l1.InsertInTheEnd(90);
 	//l1.InsertInTheFront(79);
 	
+	l1.display();
+
+	l1.DeleteNode(90);
+	l1.display();
+	l1.DeleteNode(89);
+	l1.display();
+	l1.DeleteNode(75);
 	l1.display();
 
 }
