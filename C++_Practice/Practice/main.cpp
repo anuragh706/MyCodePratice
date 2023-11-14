@@ -3,6 +3,23 @@
 #include<vector>
 using namespace std;
 
+template <typename T>
+class cars {
+public:
+	cars(T w, T h) : weight(w), height(h) {}
+	void printspecs() {
+	
+		cout << "Height is " << height<<endl;
+		cout << "Weight is " << weight << endl;
+
+	}
+private:
+	T weight;
+	T height;
+
+
+};
+
 
 int main() {
 
@@ -89,6 +106,11 @@ int main() {
 		
 	});
 
+	cars<double> volvo(4.5, 6.7);
+	volvo.printspecs();
+	int y = 12;
+	int& x = y;
+	x = 10;
+	cout << endl << y << endl;
 
-	
 }
